@@ -1,0 +1,44 @@
+ should not do
+    echo 1 > /proc/sys/net/ipv4/ip_forward
+because it allow all packet to pass throught our system
+
+we need to get only request so above option should not be enabled
+
+
+modify incomming request packet change destination to our system of different port @@port@@
+from scapy import *
+
+def chgSend(x):
+    x[IP].dst = '192.168.1.1'
+    send(x)
+while 1:
+    sniff(prn=chgSend)
+
+
+https://stackoverflow.com/questions/10033285/how-to-change-a-packet-data-with-scapy
+
+
+I think the problem is that you have enabled ip_forward so the original packet is forwarded to the original destination before the modified packet is sent by scapy.
+Theorically, the solution is to create a rule in iptables forwarding the packets what you want to modify to another port (This is more or less what Ettercap does internaly),
+      i.e = iptables -t nat -A PREROUTING -p tcp --destination-port "YourInterestingPort" -j REDIRECT   --to-port 1234
+
+
+
+Open a socket with port @@port@@, receive the packet, open a connection and send it to the original destination with original port (pretending you were the client). Then, receive the answer from the original destination, modify the answer, and return it to the original querier.
+
+while True:
+   c, addr = s_mb.accept()             # Establish connection with client.
+   query = c.recv(BUFFER_SIZE)
+
+   s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+   s.connect((IP, PORT))
+   s.send(PACKET)
+   response = s.recv(1024)
+   if response = "THIS IS THE RESPONSE THAT I WANT TO MODIFY":
+    if(real_simulation):
+        fakeresponse = "MODIFIED RESPONSE"
+        #print "The packet has beeb modified"
+       else:
+        fakeresponse = response
+   s.close()     
+   c.send(fakeresponse)
