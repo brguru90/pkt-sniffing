@@ -16,6 +16,8 @@ while 1:
 
 
 https://stackoverflow.com/questions/10033285/how-to-change-a-packet-data-with-scapy
+https://www.endpoint.com/blog/2015/04/29/raw-packet-manipulation-with-scapy
+https://www.binarytides.com/python-packet-sniffer-code-linux/
 
 
 I think the problem is that you have enabled ip_forward so the original packet is forwarded to the original destination before the modified packet is sent by scapy.
@@ -42,3 +44,11 @@ while True:
         fakeresponse = response
    s.close()     
    c.send(fakeresponse)
+
+
+
+
+   ****importent******
+
+   post received response packet in sniffing to custom local server(nodejs)
+   in node show same responce in localhost:4000

