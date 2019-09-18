@@ -35,4 +35,4 @@ def GET_print(packet1):
 
 # sniff(iface='wlp2s0', prn=http_header, filter="tcp and (port 80 or port 8080)")
 
-sniff(iface='wlp2s0', prn=http_header, filter="tcp port 8080")
+sniff(iface='enp2s0', prn=http_header, filter="tcp port 8080")

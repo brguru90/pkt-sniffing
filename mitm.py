@@ -3,8 +3,8 @@ import time
 import argparse
 import sys
 
-targetIP="192.168.0.56"
-target_mac="20:34:FB:56:B9:F7"
+targetIP="192.168.200.40"
+target_mac="B8:AE:ED:B3:87:8C"
 gatewayIP="192.168.0.1"
 gateway_mac="00:ad:24:f6:18:2a"
 
